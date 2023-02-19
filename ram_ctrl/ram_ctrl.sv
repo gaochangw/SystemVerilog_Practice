@@ -11,15 +11,15 @@ module ram_ctrl #(
   output logic [N_REQUESTORS-1:0][$clog2(DEPTH)-1-1:0] dout  // Data Out
 );
   
-  ram_sp i_ram (
-  .WIDTH (WIDTH),
-  .DEPTH (DEPTH),
-) (
-  input wire             clk,
-  input wire [WIDTH-1:0] din,
-  input wire [7:0]       addr,
-  input wire             wen,  // Active Low
-  output reg [WIDTH-1:0] dout
+    ram_sp  (
+        .WIDTH (WIDTH),
+        .DEPTH (DEPTH),
+    ) i_ram (
+        input wire             clk,
+        input wire [WIDTH-1:0] din,
+        input wire [7:0]       addr,
+        input wire             wen,  // Active Low
+        output reg [WIDTH-1:0] dout
 );
 
 
