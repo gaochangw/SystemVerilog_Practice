@@ -8,20 +8,25 @@ module ram_ctrl #(
 ) (
     input  logic                                                 clk,   // Clock
     input  logic                                                 rst_n, // Active Low
-    // Request Channels
-    input  logic [N_REQUESTORS-1:0]                              s_req_axis_tvalid_i,
-    input  logic [N_REQUESTORS-1:0][WIDTH_RAM_CTRL_INST_REQ-1:0] s_req_axis_tdata_i,
-    input  logic [N_REQUESTORS-1:0]                              s_req_axis_tlast_i,
-    input  logic [N_REQUESTORS-1:0]                              s_req_axis_tready_o,
+    // Write Request Channels
+    input  logic [N_REQUESTORS-1:0]                              s_wreq_axis_tvalid_i,
+    input  logic [N_REQUESTORS-1:0][WIDTH_RAM_CTRL_INST_REQ-1:0] s_wreq_axis_tdata_i,
+    input  logic [N_REQUESTORS-1:0]                              s_wreq_axis_tlast_i,
+    input  logic [N_REQUESTORS-1:0]                              s_wreq_axis_tready_o,
     // Write Data Channels
     input  logic [N_REQUESTORS-1:0]                              s_wdata_axis_tvalid_i,
     input  logic [N_REQUESTORS-1:0][RAM_WIDTH-1:0]               s_wdata_axis_tdata_i,
     input  logic [N_REQUESTORS-1:0]                              s_wdata_axis_tlast_i,
     input  logic [N_REQUESTORS-1:0]                              s_wdata_axis_tready_o,
+    // Read Request Channels
+    input  logic [N_REQUESTORS-1:0]                              s_rreq_axis_tvalid_i,
+    input  logic [N_REQUESTORS-1:0][WIDTH_RAM_CTRL_INST_REQ-1:0] s_rreq_axis_tdata_i,
+    input  logic [N_REQUESTORS-1:0]                              s_rreq_axis_tlast_i,
+    input  logic [N_REQUESTORS-1:0]                              s_rreq_axis_tready_o,
     // Read Data Channels
-    input  logic [N_REQUESTORS-1:0]                              m_rdata_axis_tvalid_o
-    input  logic [N_REQUESTORS-1:0][RAM_WIDTH-1:0]               m_rdata_axis_tdata_o
-    input  logic [N_REQUESTORS-1:0]                              m_rdata_axis_tlast_o
+    input  logic [N_REQUESTORS-1:0]                              m_rdata_axis_tvalid_o,
+    input  logic [N_REQUESTORS-1:0][RAM_WIDTH-1:0]               m_rdata_axis_tdata_o,
+    input  logic [N_REQUESTORS-1:0]                              m_rdata_axis_tlast_o,
     input  logic [N_REQUESTORS-1:0]                              m_rdata_axis_tready_i
 );
 
