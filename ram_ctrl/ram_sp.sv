@@ -12,10 +12,12 @@ module ram_sp #(
     reg [WIDTH-1:0] mem [DEPTH-1:0];
 
     always @(posedge clk) begin
-        if (!wen & !cen) begin
-            mem[addr] <= din;
+        if (!cen) begin
+            if (!wen) begin
+                mem[addr] <= din;
+            end else begin
+                dout <= mem[addr];
+            end
         end
     end
-
-    assign dout = mem[addr];
 endmodule
